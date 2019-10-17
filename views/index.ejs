@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= title %></title>
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%- include('shared/header', {}) %>
+    
+    <main>
+      <div class="container">
+        <section class="main_title text-center py-5">
+          <h1 class="py-5">MarkdownTweet</h1>
+          <p>マークダウンを使ってつぶやく、新しくて少し面倒くさいSNS</p>
+        </section>
+        <section class="signup-signin text-center pb-5">
+          <button type="button" class="btn btn-primary btn-lg">新規登録</button>
+          <button type="button" class="btn btn-success btn-lg">サインイン</button>
+        </section>
+      </div>
+    </main>
+
+    <%- include('shared/footer', {}) %>
   </body>
 </html>

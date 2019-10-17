@@ -12,10 +12,10 @@ const demoUsers = [...Array(10).keys()].map((i) => ({
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Users', demoUsers, {});
+    return queryInterface.bulkInsert('users', demoUsers, {});
   },
 
   down: (queryInterface, Sequelize) => {
-   return queryInterface.bulkDelete('Users', null, {});
+   return queryInterface.bulkDelete('users', null, {});
   }
 };

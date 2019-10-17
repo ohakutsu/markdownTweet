@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Like = sequelize.define('Like', {
+  const like = sequelize.define('like', {
     userId: DataTypes.INTEGER,
     itemId: DataTypes.INTEGER
   }, {});
-  Like.associate = function(models) {
-    Like.belongsTo(models.User);
-    Like.belongsTo(models.Item);
+  like.associate = function(models) {
+    like.belongsTo(models.user);
+    like.belongsTo(models.item);
   };
-  return Like;
+  return like;
 };

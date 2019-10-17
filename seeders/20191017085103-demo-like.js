@@ -9,10 +9,10 @@ const demoLikes = [...Array(20).keys()].map((i) => ({
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Likes', demoLikes, {});
+    return queryInterface.bulkInsert('likes', demoLikes, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Likes', null, {});
+    return queryInterface.bulkDelete('likes', null, {});
   }
 };

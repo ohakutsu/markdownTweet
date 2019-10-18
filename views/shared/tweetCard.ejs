@@ -1,0 +1,11 @@
+<div class="card border-primary mb-3" style="max-width: 30rem;">
+  <div class="card-body">
+    <h4 class="card-title">
+      <img src="<%= item.user.profileImage %>" alt="<%= item.user.name %>'s profile image">
+      <%= item.user.name %>
+    </h4>
+    <p class="card-text">
+      <%- markdownRenderer(item.body) %>
+    </p>
+  </div>
+</div>

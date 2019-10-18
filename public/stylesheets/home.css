@@ -24,3 +24,7 @@
   margin: 0;
   text-align: right;
 }
+.item-pagenate {
+  display: flex;
+  justify-content: center;
+}

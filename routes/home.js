@@ -11,6 +11,10 @@ const pagenate = ({ page, pageSize }) => {
   return { offset, limit };
 };
 
+router.get('/', (req, res, next) => {
+  res.redirect('/home/1');
+});
+
 router.get('/:page', async (req, res, next) => {
   let { page } = req.params;
   if (page < 1) page = 1;

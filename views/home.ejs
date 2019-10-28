@@ -8,49 +8,33 @@
     <script src="/lib/jquery.min.js"></script>
     <script src="/lib/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
-    <link rel='stylesheet' href='/stylesheets/home.css' />
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel='stylesheet' href='/stylesheets/tweetCard.css' />
   </head>
   <body>
     <%- include('shared/header', {}) %>
     
-    <main>
-      <div class="container py-3">
-        <% for(let item of items) { %>
-          <div class="item_card card">
-            <div class="card-body">
-              <div class="item_user card-title">
-                <img class="item_user-image" src="<%= item.user.profileImage %>" alt="<%= item.user.name %>'s profile image">
-                <span class="item_user-name"><%= item.user.name %></span>
-              </div>
-              <div class="item_markdown card-text">
-                <%- markdown.render(item.body) %>
-              </div>
-              <div class="item_created-at">
-                <% const date = item.createdAt; %>
-                <%= `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}` +
-                ` ${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}` %>
-              </div>
-            </div>
-          </div>
-        <% } %>
-        <div class="item-pagenate">
-          <ul class="pagination">
-            <% const { page, hasNextPage } = pagenate; %>
-            <% if (page > 1) { %>
-            <li class="page-item">
-              <a class="page-link" href="/home/<%= page - 1 %>">&laquo;</a>
-            </li>
-            <% } %>
-            <li class="page-item active">
-              <a class="page-link"><%= page %></a>
-            </li>
-            <% if (hasNextPage) { %>
-            <li class="page-item">
-              <a class="page-link" href="/home/<%= page + 1 %>">&raquo;</a>
-            </li>
-            <% } %>
-          </ul>
-        </div>
+    <main class="container">
+      <% for(let item of items) { %>
+        <%- include('shared/tweetCard', {item, markdown}) %>
+      <% } %>
+      <div class="item-pagenate">
+        <ul class="pagination">
+          <% const { page, hasNextPage } = pagenate; %>
+          <% if (page > 1) { %>
+          <li class="page-item">
+            <a class="page-link" href="/home/<%= page - 1 %>">&laquo;</a>
+          </li>
+          <% } %>
+          <li class="page-item active">
+            <a class="page-link"><%= page %></a>
+          </li>
+          <% if (hasNextPage) { %>
+          <li class="page-item">
+            <a class="page-link" href="/home/<%= page + 1 %>">&raquo;</a>
+          </li>
+          <% } %>
+        </ul>
       </div>
     </main>
 

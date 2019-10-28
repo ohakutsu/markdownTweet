@@ -10,6 +10,21 @@ router.get('/', (req, res, next) => {
   res.redirect('/home');
 });
 
+// new
+router.get('/new', (req, res, next) => {
+  const title = '新しくつぶやく';
+  const userId = 1;
+  const item = {
+    userId,
+    body: '',
+  };
+  const formMessages = {
+    title,
+    submit: 'つぶやく',
+  };
+  res.render('items/new', { title, item, formMessages });
+});
+
 // show
 router.get('/:id', async (req, res, next) => {
   const item = await db.item.findOne({
@@ -30,5 +45,6 @@ router.get('/:id', async (req, res, next) => {
     res.status(404).send('<h1>Not Found</h1><h2>404</h2>');
   }
 });
+
 
 module.exports = router;

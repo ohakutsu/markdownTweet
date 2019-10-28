@@ -1,11 +1,16 @@
-<div class="card border-primary mb-3" style="max-width: 30rem;">
-  <div class="card-body">
-    <h4 class="card-title">
-      <img src="<%= item.user.profileImage %>" alt="<%= item.user.name %>'s profile image">
-      <%= item.user.name %>
-    </h4>
-    <p class="card-text">
-      <%- markdownRenderer(item.body) %>
-    </p>
+<div class="item-card card rounded-0">
+  <div class="item-card__user">
+    <a class="item-card__user_left" href="/users/<%= item.user.id %>">
+      <img class="item-card__user_img" src="<%= item.user.profileImage %>" alt="">
+      <span class="item-card__user_name"><%= item.user.name %></span>
+    </a>
+    <span class="item-card__user_right">
+      <% const date = item.createdAt; %>
+      <%= `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}` +
+      ` ${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}` %>
+    </span>
+  </div>
+  <div class="item-card__body">
+    <%- markdown.render(item.body) %>
   </div>
 </div>

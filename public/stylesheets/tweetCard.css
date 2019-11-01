@@ -35,3 +35,7 @@ body {
   padding: 5px;
   border: 1px dashed rgba(0, 0, 0, 0.125);
 }
+.item-card__destroy {
+  margin-top: 5px;
+  text-align: right;
+}

@@ -13,4 +13,12 @@
   <div class="item-card__body">
     <%- markdown.render(item.body) %>
   </div>
+  <% if (isShowDestroyButton) { %>
+  <div class="item-card__destroy">
+    <form action="/items/destroy" method="POST">
+      <input hidden type="number" name="id" value="<%= item.id %>">
+      <button type="submit" class="btn btn-danger">削除</button>
+    </form>
+  </div>
+  <% } %>
 </div>

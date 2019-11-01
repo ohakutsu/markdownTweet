@@ -68,6 +68,16 @@ router.post('/new', [
   }
 });
 
+// destroy
+router.post('/destroy', (req, res, next) => {
+  const { id } = req.body;
+  db.item.destroy({
+    where: { id },
+  });
+  res.redirect('/home');
+});
+
+
 // show
 router.get('/:id', async (req, res, next) => {
   const item = await db.item.findOne({

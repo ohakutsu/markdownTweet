@@ -16,7 +16,7 @@
     
     <main class="container">
       <% for(let item of items) { %>
-        <%- include('shared/tweetCard', {item, markdown}) %>
+        <%- include('shared/tweetCard', {item, markdown, isShowDestroyButton: false}) %>
       <% } %>
       <div class="item-pagenate">
         <ul class="pagination">

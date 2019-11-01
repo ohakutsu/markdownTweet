@@ -1,5 +1,6 @@
 const express = require('express');
 const MarkdownIt = require('markdown-it');
+const { check, validationResult } = require('express-validator');
 const db = require('../models');
 
 const router = express.Router();
@@ -22,7 +23,49 @@ router.get('/new', (req, res, next) => {
     title,
     submit: 'つぶやく',
   };
-  res.render('items/new', { title, item, formMessages });
+  res.render('items/new', {
+    title,
+    item,
+    formMessages,
+    errors: null,
+  });
+});
+
+// create
+router.post('/new', [
+  check('body').not().isEmpty().withMessage('1文字以上で入力してください')
+    .isLength({ max: 200 })
+    .withMessage('200文字以内で入力してください'),
+], async (req, res, next) => {
+  const errors = validationResult(req);
+  const userId = 1;
+  const { body } = req.body;
+  const title = '新しくつぶやく';
+  const formMessages = {
+    title,
+    submit: 'つぶやく',
+  };
+
+  if (!errors.isEmpty()) {
+    res.status(400).render('items/new', {
+      title,
+      item: { userId, body },
+      formMessages,
+      errors: errors.array(),
+    });
+  }
+
+  try {
+    const item = await db.item.create({ userId, body });
+    res.redirect(`/items/${item.id}`);
+  } catch (error) {
+    res.status(500).render('items/new', {
+      title,
+      item: { userId, body },
+      formMessages,
+      errors: error.msg,
+    });
+  }
 });
 
 // show

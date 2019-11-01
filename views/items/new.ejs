@@ -14,6 +14,13 @@
     <%- include('../shared/header', {}) %>
     
     <main class="container">
+      <% if (errors) { %>
+        <section class="alerts mt-2">
+          <% for (let error of errors) { %>
+            <div class="alert alert-danger rounded-0" role="alert"><%= error.msg %></div>
+          <% } %>
+        </section>
+      <% } %>
       <%- include('../shared/tweetForm', { item, formMessages }) %>
     </main>
 

@@ -53,18 +53,9 @@ router.post('/new', [
       formMessages,
       errors: errors.array(),
     });
-  }
-
-  try {
+  } else {
     const item = await db.item.create({ userId, body });
     res.redirect(`/items/${item.id}`);
-  } catch (error) {
-    res.status(500).render('items/new', {
-      title,
-      item: { userId, body },
-      formMessages,
-      errors: error.msg,
-    });
   }
 });
 
